@@ -83,6 +83,29 @@ class BT {
     walk(currentNode);
     return path;
   }
+
+  inOrderTraverse = (currentNode = this.root) => {
+    let path = [];
+    let walk = (currentNode) => {
+      // base case
+      if (!(currentNode.left instanceof Node) && !(currentNode.right instanceof Node)) {
+        path.push(currentNode.value);
+        return;
+      }
+      // recurse
+      if (currentNode.left instanceof Node) {
+        walk(currentNode.left);
+      }
+      // in order = middle
+      path.push(currentNode.value);
+      if (currentNode.right instanceof Node) {
+        walk(currentNode.right);
+      }
+
+    }
+    walk(currentNode);
+    return path;
+  }
 }
 
 let seedValue = 50;
@@ -92,7 +115,8 @@ let arr = [30, 20, 40, 35, 70, 60, 80, 70];
 //   arr.push(Math.floor(100 * Math.random()))
 // }
 tree.build(arr);
-arr.unshift(seedValue)
+arr.unshift(seedValue);
 console.log('arr: ', arr);
-console.log('depth traversal: ', tree.depthTraverse())
-console.log('breadth traversal: ', tree.breadthTraverse())
+console.log('depth traversal: ', tree.depthTraverse());
+console.log('breadth traversal: ', tree.breadthTraverse());
+console.log('in order traverseal: ', tree.inOrderTraverse());
